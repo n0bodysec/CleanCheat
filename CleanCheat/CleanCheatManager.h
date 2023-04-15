@@ -89,7 +89,7 @@ public:
 
         if (!_starts)
         {
-            LOG("You need to start CleanCheat first, Are you forget to call 'Start' function");
+            LOG("ERROR: Framework is not initialized.");
             return;
         }
         
@@ -101,7 +101,7 @@ public:
         }
         catch (...)
         {
-            LOG("CleanCheat ERROR (Tick): SharedData throws unhandled exception");
+            LOG("ERROR: (Tick) SharedData throws unhandled exception.");
         }
 
         for (RunnerBase<void>*& runner : _runners)
@@ -114,7 +114,7 @@ public:
                 }
                 catch (...)
                 {
-                    LOG("CleanCheat ERROR (Tick): Runner(%s) throws unhandled exception", runner->Name().c_str());
+                    LOG("ERROR: (Tick) Runner(%s) throws unhandled exception.", runner->Name().c_str());
                 }
             }
         }
