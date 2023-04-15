@@ -11,9 +11,9 @@ struct CleanCheatOptions
 public:
     bool UseLogger = false;
 #ifdef UNICODE
-    std::wstring ConsoleTitle = TEXT("CleanCheat");
+    std::wstring ConsoleTitle;
 #else
-    std::string ConsoleTitle = TEXT("CleanCheat");
+    std::string ConsoleTitle;
 #endif // !UNICODE
 };
 
@@ -50,8 +50,8 @@ public:
                 AllocConsole();
 
             freopen_s(reinterpret_cast<FILE**>(stdout), "CONOUT$", "w", stdout); // NOLINT(cert-err33-c)
-            SetConsoleTitle(_options.ConsoleTitle.c_str());
-            //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+            if (!_options.ConsoleTitle.empty()) SetConsoleTitle(_options.ConsoleTitle.c_str());
+            // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
         }
 
         return _init = true;
