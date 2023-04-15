@@ -1,4 +1,4 @@
-﻿//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 //
 //  Detours Disassembler (disasm.cpp of detours.lib)
 //
@@ -7,7 +7,7 @@
 //  Copyright (c) Microsoft Corporation.  All rights reserved.
 //
 
-//#define DETOUR_DEBUG 1
+// #define DETOUR_DEBUG 1
 #define DETOURS_INTERNAL
 #include "detours.h"
 #include <limits.h>
@@ -144,10 +144,8 @@
 //      offsets.
 //
 
-#pragma data_seg(".tls")
-#pragma const_seg(".gfids")
-//#pragma data_seg(".detourd")
-//#pragma const_seg(".detourc")
+#pragma data_seg(".detourd")
+#pragma const_seg(".detourc")
 
 //////////////////////////////////////////////////// X86 and X64 Disassembler.
 //
