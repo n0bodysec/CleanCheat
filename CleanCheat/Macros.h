@@ -16,8 +16,8 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdio>
-#define LOG(format, ...); std::printf("[%s:%s:%i] " format "\n", __FILENAME__, __FUNCTION__, __LINE__, __VA_ARGS__);
+#define LOG(format, ...) std::printf("[%s:%s:%i] " format "\n", __FILENAME__, __FUNCTION__, __LINE__, __VA_ARGS__)
 #else
-#define LOG(format, ...);
+#define LOG(format, ...)
 #endif // USE_LOGGER
 #endif // !LOG
