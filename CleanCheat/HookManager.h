@@ -97,7 +97,7 @@ public:
             void* detourFn = detour.second;
 
             if (!UnDetour(originalFn, detourFn))
-                LOG("ERROR: An error occurred while attempting to unhook.");
+                LOG("ERROR: An error occurred while attempting to unhook");
         }
     }
 };

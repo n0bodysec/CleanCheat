@@ -11,11 +11,11 @@
 
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
 
-#if USE_LOGGER
+#if USE_LOGGER && !defined(LOG)
 #include <cstdio>
 #include <cstring>
 #include <cstdio>
-#define LOG(format, ...) std::printf("[%s:%s:%i] " format "\n", __FILENAME__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG(format, ...); std::printf("[%s:%s:%i] " format "\n", __FILENAME__, __FUNCTION__, __LINE__, __VA_ARGS__);
 #else
-#define LOG(format, ...)
+#define LOG(format, ...);
 #endif
