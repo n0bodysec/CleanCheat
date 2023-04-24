@@ -1,7 +1,11 @@
 #pragma once
 
 // SETTINGS
-#define USE_LOGGER              0
+#ifdef CLEANCHEAT_USER_CONFIG
+#include CLEANCHEAT_USER_CONFIG
+#else
+#include "Config.h"
+#endif
 
 // KEYWORDS
 #define ABSTRACT
@@ -12,7 +16,7 @@
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
 
 #ifndef LOG
-#if USE_LOGGER
+#ifdef USE_LOGGER
 #include <cstdio>
 #include <cstring>
 #include <cstdio>

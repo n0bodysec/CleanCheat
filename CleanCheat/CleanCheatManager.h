@@ -1,10 +1,10 @@
 ﻿#pragma once
-#include <vector>
-#include <thread>
-#include "Macros.h"
-#include "RunnerBase.h"
-#include "MemoryManager.h"
 #include "HookManager.h"
+#include "Macros.h"
+#include "MemoryManager.h"
+#include "RunnerBase.h"
+#include <thread>
+#include <vector>
 
 struct CleanCheatOptions
 {

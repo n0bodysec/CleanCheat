@@ -2,4 +2,3 @@
 
 #include "CleanCheatSettings.h"
 #include "CleanCheat/CleanCheatManager.h"
-

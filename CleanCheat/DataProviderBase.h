@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "Macros.h"
 #include "DataProviderOptionsBase.h"
+#include "Macros.h"
 #include "RunnerTaskBase.h"
 
 template <typename TInputType, typename TOutDataType, class TOptions = DataProviderOptionsBase>

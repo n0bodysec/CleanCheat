@@ -1,12 +1,11 @@
 #pragma once
-#include <vector>
-
-#include "Macros.h"
 #include "CleanCheatUtils.h"
-#include "RunnerFeaturesCollectionBase.h"
-#include "RunnerDataProvidersCollectionBase.h"
 #include "DataProviderBase.h"
 #include "FeatureBase.h"
+#include "Macros.h"
+#include "RunnerDataProvidersCollectionBase.h"
+#include "RunnerFeaturesCollectionBase.h"
+#include <vector>
 
 template <typename TTaskInputType, class TFeatures = RunnerFeaturesCollectionBase, class TDataProviders = RunnerDataProvidersCollectionBase, typename TInitDataType = void>
 ABSTRACT class RunnerBase

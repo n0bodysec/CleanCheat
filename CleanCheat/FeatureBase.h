@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "Macros.h"
 #include "FeatureSettings.h"
+#include "Macros.h"
 #include "RunnerTaskBase.h"
 
 template <typename TType, class TSettings = FeatureSettings, typename TInitDataType = void>

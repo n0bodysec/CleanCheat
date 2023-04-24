@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include <string>
 #include "Macros.h"
+#include <string>
 
 template <typename TType, typename TInitDataType = void>
 ABSTRACT class RunnerTaskBase

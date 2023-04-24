@@ -2,10 +2,16 @@
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 
+#include "Macros.h"
+
+#ifdef DETOURS_PATH
+#include DETOURS_PATH
+#else
+#include "Libs/Detours/detours.h"
+#endif
 #include <algorithm>
 #include <unordered_map>
 #include <Windows.h>
-#include "Libs/Detours/detours.h"
 
 class HookManager final
 {
