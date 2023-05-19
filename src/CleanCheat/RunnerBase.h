@@ -38,7 +38,7 @@ private:
             }
             catch (...)
             {
-                LOG("ERROR: (BeforeExecute) DataProvider(%s) throws unhandled exception", dataProvider->Name().c_str());
+                CLEANCHEAT_LOG("ERROR: (BeforeExecute) DataProvider(%s) throws unhandled exception", dataProvider->Name().c_str());
             }
         }
 
@@ -50,7 +50,7 @@ private:
             }
             catch (...)
             {
-                LOG("ERROR: (BeforeExecute) Feature(%s) throws unhandled exception", feature->Name().c_str());
+                CLEANCHEAT_LOG("ERROR: (BeforeExecute) Feature(%s) throws unhandled exception", feature->Name().c_str());
             }
         }
     }
@@ -68,7 +68,7 @@ private:
             }
             catch (...)
             {
-                LOG("ERROR: (AfterExecute) DataProvider(%s) throws unhandled exception", dataProvider->Name().c_str());
+                CLEANCHEAT_LOG("ERROR: (AfterExecute) DataProvider(%s) throws unhandled exception", dataProvider->Name().c_str());
             }
         }
 
@@ -80,7 +80,7 @@ private:
             }
             catch (...)
             {
-                LOG("ERROR: (AfterExecute) Feature(%s) throws unhandled exception", feature->Name().c_str());
+                CLEANCHEAT_LOG("ERROR: (AfterExecute) Feature(%s) throws unhandled exception", feature->Name().c_str());
             }
         }
     }
@@ -154,7 +154,7 @@ protected:
                 }
                 catch (...)
                 {
-                    LOG("ERROR: (ExecuteTasks) DataProvider(%s) throws unhandled exception", dataProviders->Name().c_str());
+                    CLEANCHEAT_LOG("ERROR: (ExecuteTasks) DataProvider(%s) throws unhandled exception", dataProviders->Name().c_str());
                 }
             }
         }
@@ -169,7 +169,7 @@ protected:
                 }
                 catch (...)
                 {
-                    LOG("ERROR: (ExecuteTasks) Feature(%s) throws unhandled exception", feature->Name().c_str());
+                    CLEANCHEAT_LOG("ERROR: (ExecuteTasks) Feature(%s) throws unhandled exception", feature->Name().c_str());
                 }
             }
         }

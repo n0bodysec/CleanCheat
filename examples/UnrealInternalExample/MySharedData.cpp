@@ -9,7 +9,7 @@ void MySharedData::Tick(CG::UCanvas* canvas)
     if (!RobotoFont)
     {
         RobotoFont = CG::UObject::FindObject<CG::UFont>("Font Roboto.Roboto");
-        LOG("Roboto font: %p", RobotoFont);
+        CLEANCHEAT_LOG("Roboto font: %p", RobotoFont);
     }
 
     GWorld = *CG::UWorld::GWorld;
@@ -43,7 +43,7 @@ void MySharedData::Tick(CG::UCanvas* canvas)
     //        LootMat = CG::UObject::FindObject<CG::UMaterial>("Material WireframeMaterial.WireframeMaterial");
     //        if (LootMat)
     //        {
-    //            LOG("Update LootMaterial");
+    //            CLEANCHEAT_LOG("Update LootMaterial");
     //            LootMat->bDisableDepthTest = 1;
     //            //LootMat->Flags = LootMat->Flags | 0x80;
     //        }

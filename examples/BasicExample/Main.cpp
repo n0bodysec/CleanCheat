@@ -20,7 +20,7 @@ bool CleanCheatInitRunners()
     initChecker &= basicDataProviders->Basic->Init();
     if (!initChecker)
     {
-        LOG("ERROR: Can't initialize DataProviders");
+        CLEANCHEAT_LOG("ERROR: Can't initialize DataProviders");
         return false;
     }
     
@@ -30,7 +30,7 @@ bool CleanCheatInitRunners()
     initChecker &= basicDataFeatures->Test->Init();
     if (!initChecker)
     {
-        LOG("ERROR: Can't initialize Features");
+        CLEANCHEAT_LOG("ERROR: Can't initialize Features");
         return false;
     }
     
@@ -39,7 +39,7 @@ bool CleanCheatInitRunners()
 
     if (!initChecker)
     {
-        LOG("ERROR: Can't initialize Runners");
+        CLEANCHEAT_LOG("ERROR: Can't initialize Runners");
         return false;
     }
 
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 
     if (!CleanCheat::Init(options))
     {
-        LOG("ERROR: Can't initialize CleanCheat");
+        CLEANCHEAT_LOG("ERROR: Can't initialize CleanCheat");
         CleanCheat::Discard();
         return EXIT_FAILURE;
     }
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
     CleanCheat::Start();
     
     // # Simple log
-    LOG("Hello %s users, press %s key to exit", "CleanCheat", "END");
+    CLEANCHEAT_LOG("Hello %s users, press %s key to exit", "CleanCheat", "END");
 
     int initData = 1;
     BasicRunner* basicRunner = CleanCheat::Runners->Basic;
@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
         CleanCheat::Tick(&initData);
 
         const char* dataStr = basicRunner->DataProviders->Basic->GetData()->c_str();
-        LOG("BasicDataProvider say: %s", dataStr);
+        CLEANCHEAT_LOG("BasicDataProvider say: %s", dataStr);
         
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }

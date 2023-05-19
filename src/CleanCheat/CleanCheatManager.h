@@ -50,7 +50,8 @@ public:
                 AllocConsole();
 
             freopen_s(reinterpret_cast<FILE**>(stdout), "CONOUT$", "w", stdout); // NOLINT(cert-err33-c)
-            if (!_options.ConsoleTitle.empty()) SetConsoleTitle(_options.ConsoleTitle.c_str());
+            if (!_options.ConsoleTitle.empty())
+                SetConsoleTitle(_options.ConsoleTitle.c_str());
             // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
         }
 
@@ -89,7 +90,7 @@ public:
 
         if (!_starts)
         {
-            LOG("ERROR: Framework is not initialized");
+            CLEANCHEAT_LOG("ERROR: Framework is not initialized");
             return;
         }
         
@@ -101,7 +102,7 @@ public:
         }
         catch (...)
         {
-            LOG("ERROR: (Tick) SharedData throws unhandled exception");
+            CLEANCHEAT_LOG("ERROR: (Tick) SharedData throws unhandled exception");
         }
 
         for (RunnerBase<void>*& runner : _runners)
@@ -114,7 +115,7 @@ public:
                 }
                 catch (...)
                 {
-                    LOG("ERROR: (Tick) Runner(%s) throws unhandled exception", runner->Name().c_str());
+                    CLEANCHEAT_LOG("ERROR: (Tick) Runner(%s) throws unhandled exception", runner->Name().c_str());
                 }
             }
         }

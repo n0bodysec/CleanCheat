@@ -31,13 +31,13 @@ bool InitCleanCheat()
     featuresInit &= lvlRunner->Features->Chams->Init();
     if (!featuresInit)
     {
-        LOG("Features initialize failed");
+        CLEANCHEAT_LOG("Features initialize failed");
         return false;
     }
 
     if (!lvlRunner->Init())
     {
-        LOG("Runner registration failed");
+        CLEANCHEAT_LOG("Runner registration failed");
         return false;
     }
 
@@ -52,7 +52,7 @@ void DllUnload()
 
 void __stdcall ProcessEventHook(CG::UObject* thiz, CG::UFunction* function, void* parms)
 {
-    //LOG("%s", function->GetFullName().c_str());
+    //CLEANCHEAT_LOG("%s", function->GetFullName().c_str());
     OProcessEvent(thiz, function, parms);
 }
 
@@ -66,12 +66,12 @@ void __stdcall PostRenderHook(CG::UGameViewportClient* gameViewportClient, CG::U
             Once = true;
 
             CleanCheat::Hook->Detour(reinterpret_cast<void**>(&OProcessEvent), reinterpret_cast<void*>(&ProcessEventHook));
-            LOG("Hook 'ProcessEvent' ... Success");
+            CLEANCHEAT_LOG("Hook 'ProcessEvent' ... Success");
         }
     }
     catch (...)
     {
-        LOG("Error: %s", "Hook 'ProcessEvent' falied");
+        CLEANCHEAT_LOG("Error: %s", "Hook 'ProcessEvent' falied");
     }
 
     // Unload
@@ -104,42 +104,42 @@ void MainEntryPoint(HMODULE hModule)
         MessageBox(nullptr, TEXT("SDK initialization failed"), TEXT("Error"), MB_OK);
         return;
     }
-    LOG("SDK Initialized successfully");
+    CLEANCHEAT_LOG("SDK Initialized successfully");
     
     // CleanCheat
     if (!InitCleanCheat())
     {
-        LOG("CleanCheat initialization failed");
+        CLEANCHEAT_LOG("CleanCheat initialization failed");
         return;
     }
-    LOG("ModuleBase: %p", static_cast<void*>(GetModuleHandleA(nullptr)));
+    CLEANCHEAT_LOG("ModuleBase: %p", static_cast<void*>(GetModuleHandleA(nullptr)));
 
     // GWorld
     CG::UWorld* gWorld = *CG::UWorld::GWorld;
     if (!gWorld)
     {
-        LOG("GWorld is nullptr");
+        CLEANCHEAT_LOG("GWorld is nullptr");
         return;
     }
-    LOG("GWorld: %p", gWorld);
+    CLEANCHEAT_LOG("GWorld: %p", gWorld);
 
     // LocalPlayer
     CG::ULocalPlayer* localPlayer = Utils::GetLocalPlayer();
     if (!localPlayer)
     {
-        LOG("localPlayer is nullptr");
+        CLEANCHEAT_LOG("localPlayer is nullptr");
         return;
     }
-    LOG("LocalPlayer: %p", localPlayer);
+    CLEANCHEAT_LOG("LocalPlayer: %p", localPlayer);
     
     // PostRender
-    LOG("ViewportClient : 0x%llx", reinterpret_cast<uintptr_t>(localPlayer->ViewportClient));
+    CLEANCHEAT_LOG("ViewportClient : 0x%llx", reinterpret_cast<uintptr_t>(localPlayer->ViewportClient));
     std::vector<CG::UGameViewportClient*> gameViewportClients = CG::UObject::FindObjects<CG::UGameViewportClient>();
-    LOG("GameViewportClientCount: %d", static_cast<int>(gameViewportClients.size()));
+    CLEANCHEAT_LOG("GameViewportClientCount: %d", static_cast<int>(gameViewportClients.size()));
 
     CG::UGameViewportClient*& gameViewportClient = gameViewportClients[GAME_VIEW_PORT_INDEX];
     void** gameViewportClientVmt = *reinterpret_cast<void***>(gameViewportClient);
-    LOG("PostRender     : 0x%llx", reinterpret_cast<uintptr_t>(gameViewportClientVmt[POST_RENDER_INDEX]));
+    CLEANCHEAT_LOG("PostRender     : 0x%llx", reinterpret_cast<uintptr_t>(gameViewportClientVmt[POST_RENDER_INDEX]));
 
     CleanCheat::Hook->SwapVmt(
         gameViewportClient,
@@ -150,7 +150,7 @@ void MainEntryPoint(HMODULE hModule)
     // ProcessEvent
     void** localPlayerVmt = *reinterpret_cast<void***>(localPlayer);
     OProcessEvent = reinterpret_cast<ProcessEventType>(localPlayerVmt[PROCESS_EVENT_INDEX]);
-    LOG("ProcessEvents  : 0x%llx", reinterpret_cast<uintptr_t>(OProcessEvent));
+    CLEANCHEAT_LOG("ProcessEvents  : 0x%llx", reinterpret_cast<uintptr_t>(OProcessEvent));
 }
 
 BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD ulReasonForCall, LPVOID lpReserved)
@@ -165,17 +165,17 @@ BOOL APIENTRY DllMain(const HMODULE hModule, const DWORD ulReasonForCall, LPVOID
     }
     catch (const std::exception& e)
     {
-        LOG("Error: %s", e.what());
+        CLEANCHEAT_LOG("Error: %s", e.what());
         error = true;
     }
     catch (const std::string& ex)
     {
-        LOG("Error: %s", ex.c_str());
+        CLEANCHEAT_LOG("Error: %s", ex.c_str());
         error = true;
     }
     catch (...)
     {
-        LOG("Error!!!!!!!");
+        CLEANCHEAT_LOG("Error!!!!!!!");
         error = true;
     }
 

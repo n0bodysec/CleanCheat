@@ -1,5 +1,4 @@
 #pragma once
 
-// #define USE_LOGGER
-// #define LOG YourLoggerFunction
-// #define DETOURS_PATH "vendor/detours/detours.h"
+// #define CLEANCHEAT_LOG YourLoggerFunction
+// #define CLEANCHEAT_DETOURS_PATH "vendor/detours/detours.h"

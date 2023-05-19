@@ -4,8 +4,8 @@
 
 #include "Macros.h"
 
-#ifdef DETOURS_PATH
-#include DETOURS_PATH
+#ifdef CLEANCHEAT_DETOURS_PATH
+#include CLEANCHEAT_DETOURS_PATH
 #else
 #include "Libs/Detours/detours.h"
 #endif
@@ -103,7 +103,7 @@ public:
             void* detourFn = detour.second;
 
             if (!UnDetour(originalFn, detourFn))
-                LOG("ERROR: An error occurred while attempting to unhook");
+                CLEANCHEAT_LOG("ERROR: An error occurred while attempting to unhook");
         }
     }
 };

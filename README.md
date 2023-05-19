@@ -236,7 +236,7 @@ CleanCheat::SharedData->ANY_DATA;
 
 **Logger**
 
-You can log by `LOG` macro that's only work if `UseLogger` option are `ture`
+You can log by `CLEANCHEAT_LOG` macro that's only work if `UseLogger` option are `ture`
 
 ```c++
 int main(int argc, char* argv[])
@@ -245,7 +245,7 @@ int main(int argc, char* argv[])
     ...
     
     // Log
-    LOG("Hello '%s' users", "CleanCheat");
+    CLEANCHEAT_LOG("Hello '%s' users", "CleanCheat");
     return 0;
 }
 
