@@ -55,7 +55,8 @@ public:
             // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
         }
 
-        return _init = true;
+        _init = true;
+        return true;
     }
 
     static bool Start()
