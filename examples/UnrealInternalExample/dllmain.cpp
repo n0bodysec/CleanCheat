@@ -20,7 +20,7 @@ bool InitCleanCheat()
 {
     // Init CleanCheat
     CleanCheatOptions options;
-    options.UseLogger = true;
+    options.AttachConsole = true;
 
     CleanCheat::Init(options);
 

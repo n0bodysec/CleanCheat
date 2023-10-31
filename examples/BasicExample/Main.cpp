@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 {
     // CleanCheat
     CleanCheatOptions options;
-    options.UseLogger = true;
+    options.AttachConsole = true;
     options.ConsoleTitle = L"CleanCheat";
 
     if (!CleanCheat::Init(options))

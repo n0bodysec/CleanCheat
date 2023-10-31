@@ -2,13 +2,12 @@
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 
-#include "Macros.h"
-
 #ifdef CLEANCHEAT_DETOURS_PATH
 #include CLEANCHEAT_DETOURS_PATH
 #else
 #include "Libs/Detours/detours.h"
 #endif
+
 #include <algorithm>
 #include <unordered_map>
 #include <Windows.h>

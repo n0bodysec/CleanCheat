@@ -133,6 +133,7 @@ Create `CleanCheatSettings.h` file in your project folder and its content should
 #include "Runners/BasicRunner.h"
 
 #define SHARED_DATA_TYPE        SHARED_DATA_CLASS_NAME
+#define CLEANCHEAT_LOG          YOUR_LOGGING_FUNCTION
 
 class RunnersCollection final : public RunnersCollectionBase
 {
@@ -159,7 +160,7 @@ first code you be executed in your project, this is how to initialize `CleanChea
 
 ```c++
 CleanCheatOptions options;
-options.UseLogger = true;
+options.AttachConsole = true;
 options.ConsoleTitle = L"CleanCheat";
 
 if (!CleanCheat::Init(options))
@@ -236,7 +237,7 @@ CleanCheat::SharedData->ANY_DATA;
 
 **Logger**
 
-You can log by `CLEANCHEAT_LOG` macro that's only work if `UseLogger` option are `ture`
+You can log by `CLEANCHEAT_LOG` macro
 
 ```c++
 int main(int argc, char* argv[])
@@ -281,10 +282,10 @@ std::vector<void*> addrs = CleanCheat::Memory->PatternScan("48 89 5C 24", 2);
 
 Options presented by `CleanCheatOptions` struct that are passed when [initialize CleanCheat](#step2--initialization)
 
-| Option       | Type   | Description                                                    |
-|--------------|--------|----------------------------------------------------------------|
-| UseLogger    | bool   | Enable console logging by attaching or allocate console window |
-| ConsoleTitle | string | Console window title                                           |
+| Option        | Type   | Description                                                    |
+|---------------|--------|----------------------------------------------------------------|
+| AttachConsole | bool   | Enable console logging by attaching or allocate console window |
+| ConsoleTitle  | string | Console window title                                           |
 
 ## Concepts
 

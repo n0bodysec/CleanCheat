@@ -9,7 +9,7 @@
 struct CleanCheatOptions
 {
 public:
-    bool UseLogger = false;
+    bool AttachConsole = false;
 #ifdef UNICODE
     std::wstring ConsoleTitle;
 #else
@@ -44,7 +44,7 @@ public:
             return false;
 
         _options = options;
-        if (_options.UseLogger)
+        if (_options.AttachConsole)
         {
             if (!AttachConsole(GetCurrentProcessId()))
                 AllocConsole();
@@ -153,7 +153,7 @@ public:
         DELETE_HEAP(SharedData);
 
         // Logger
-        if (_options.UseLogger)
+        if (_options.AttachConsole)
         {
             static auto invalidParameterHandler = [](const wchar_t* expression, const wchar_t* function, const wchar_t* file, const unsigned int line, uintptr_t pReserved)
             {

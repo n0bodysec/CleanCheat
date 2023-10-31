@@ -5,6 +5,7 @@
 #include "Runners/LevelActorsRunner.h"
 
 #define SHARED_DATA_TYPE        MySharedData
+#define CLEANCHEAT_LOG
 
 class RunnersCollection final : public RunnersCollectionBase
 {
