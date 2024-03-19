@@ -15,17 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CleanCheat\Libs\Detours\detours.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CleanCheat\Libs\Detours\disasm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CleanCheat\Libs\Detours\modules.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="CleanCheat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -53,7 +42,7 @@
     <ClInclude Include="CleanCheat\RunnerBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CleanCheat\Libs\Detours\detours.h">
+    <ClInclude Include="CleanCheat\Libs\MinHook\MinHook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CleanCheat\CleanCheatManager.h">

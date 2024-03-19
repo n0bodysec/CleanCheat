@@ -27,10 +27,7 @@
       <ClInclude Include="CleanCheat\HookManager.h"/>
       <ClInclude Include="CleanCheat\MemoryManager.h"/>
       <ClInclude Include="CleanCheat\RunnerBase.h"/>
-      <ClInclude Include="CleanCheat\Libs\Detours\detours.h"/>
-      <ClCompile Include="CleanCheat\Libs\Detours\detours.cpp"/>
-      <ClCompile Include="CleanCheat\Libs\Detours\disasm.cpp"/>
-      <ClCompile Include="CleanCheat\Libs\Detours\modules.cpp"/>
+      <ClInclude Include="CleanCheat\Libs\MinHook\MinHook.h"/>
       <ClInclude Include="CleanCheat\CleanCheatManager.h"/>
       <ClInclude Include="CleanCheat\FeatureBase.h"/>
       <ClInclude Include="CleanCheat\RunnersCollectionBase.h"/>

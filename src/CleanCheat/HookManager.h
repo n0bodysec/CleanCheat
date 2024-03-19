@@ -2,10 +2,16 @@
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 
-#ifdef CLEANCHEAT_DETOURS_PATH
-#include CLEANCHEAT_DETOURS_PATH
+#ifdef CLEANCHEAT_MINHOOK_PATH
+#include CLEANCHEAT_MINHOOK_PATH
 #else
-#include "Libs/Detours/detours.h"
+#include "Libs/MinHook/MinHook.h"
+#endif
+
+#if defined _M_X64
+#pragma comment(lib, __FILE__ "\\..\\Libs\\MinHook\\libMinHook-x64-v143-md.lib")
+#elif defined _M_IX86
+#pragma comment(lib, __FILE__ "\\..\\Libs\\MinHook\\libMinHook-x86-v143-md.lib")
 #endif
 
 #include <algorithm>
@@ -15,8 +21,11 @@
 class HookManager final
 {
 private:
-    std::unordered_map<void**, void*> _detours;
+    std::unordered_map<LPVOID, LPVOID> _detours;
     std::unordered_map<void*, std::vector<std::pair<int32_t, void*>>> _vmtSwaps;
+
+public:
+    bool isInitialized;
 
 public:
     void SwapVmt(void* instance, const int32_t vmtIndex, void* hkFunc, void** outOriginalFunc)
@@ -72,36 +81,42 @@ public:
         }
     }
 
-    bool Detour(void** originalFunctionPointer, void* detourPointer)
+    MH_STATUS Init()
     {
-        _detours.emplace(originalFunctionPointer, detourPointer);
+        MH_STATUS ret = MH_Initialize();
+        if (ret == MH_OK) isInitialized = true;
 
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourAttach(originalFunctionPointer, detourPointer);
-
-        return DetourTransactionCommit() == NO_ERROR;
+        return ret;
     }
 
-    bool UnDetour(void** originalFunctionPointer, void* detourPointer)
+    MH_STATUS Uninit()
     {
-        _detours.erase(originalFunctionPointer);
+        MH_STATUS ret = MH_Uninitialize();
+        if (ret == MH_OK) isInitialized = false;
 
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourDetach(originalFunctionPointer, detourPointer);
+        return ret;
+    }
 
-        return DetourTransactionCommit() == NO_ERROR;
+    MH_STATUS Detour(LPVOID pTarget, LPVOID pDetour, LPVOID* ppOriginal)
+    {
+        MH_STATUS ret = MH_CreateHook(pTarget, pDetour, ppOriginal);
+        if (ret == MH_OK) _detours.emplace(pTarget, pDetour);
+
+        return ret;
+    }
+
+    MH_STATUS UnDetour(LPVOID pTarget)
+    {
+        _detours.erase(pTarget);
+
+        return MH_RemoveHook(pTarget);
     }
 
     void UnDetourAll()
     {
-        for (std::pair<void** const, void*>& detour : _detours)
+        for (auto& detour : _detours)
         {
-            void** originalFn = detour.first;
-            void* detourFn = detour.second;
-
-            if (!UnDetour(originalFn, detourFn))
+            if (UnDetour(detour.first) != MH_OK)
                 CLEANCHEAT_LOG("ERROR: An error occurred while attempting to unhook");
         }
     }

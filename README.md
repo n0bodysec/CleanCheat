@@ -438,4 +438,4 @@ There are a number of examples that demonstrate various aspects of using `CleanC
 
 ## Third-party libraries
 
-[Detours](https://github.com/microsoft/Detours)
+[MinHook](https://github1s.com/TsudaKageyu/minhook)
