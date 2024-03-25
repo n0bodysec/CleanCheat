@@ -241,4 +241,36 @@ public:
         _dataProvidersList.clear();
         DELETE_HEAP(DataProviders);
     }
+
+    auto GetDataProvidersList()
+    {
+        std::vector<DataProviderBase<TTaskInputType, void>*> ret;
+
+        std::vector<uintptr_t> dataProviders = CleanCheatUtils::CollectPointersAddress<TDataProviders>(DataProviders);
+        for (uintptr_t& addr : dataProviders)
+        {
+            auto* dataProvider = reinterpret_cast<DataProviderBase<TTaskInputType, void>*>(addr);
+            if (!dataProvider) continue;
+
+            ret.push_back(dataProvider);
+        }
+
+        return ret;
+    }
+
+    auto GetFeaturesList()
+    {
+        std::vector<FeatureBase<TTaskInputType>*> ret;
+
+        std::vector<uintptr_t> features = CleanCheatUtils::CollectPointersAddress<TFeatures>(Features);
+        for (uintptr_t& addr : features)
+        {
+            auto* feature = reinterpret_cast<FeatureBase<TTaskInputType>*>(addr);
+            if (!feature) continue;
+
+            ret.push_back(feature);
+        }
+
+        return ret;
+    }
 };
